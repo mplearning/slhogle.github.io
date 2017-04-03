@@ -5,8 +5,8 @@
     <description>Microbes + Biogeochemistry</description>
     <link>http://slhogle.github.io/</link>
     <atom:link href="http://slhogle.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 03 Apr 2017 18:37:56 -0400</pubDate>
-    <lastBuildDate>Mon, 03 Apr 2017 18:37:56 -0400</lastBuildDate>
+    <pubDate>Mon, 03 Apr 2017 18:44:34 -0400</pubDate>
+    <lastBuildDate>Mon, 03 Apr 2017 18:44:34 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -20,9 +20,9 @@
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sbatch --array 5-6 myscript.sbatch&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;which will have the slurm scheduler submit parallel jobs for you to make your jobs run quicker.&lt;/p&gt;
+&lt;p&gt;which will have the slurm scheduler submit parallel jobs based on available resources for the array range of 5-6&lt;/p&gt;
 
-&lt;p&gt;If your file aren’t formatted with a number you can use this workaround.&lt;/p&gt;
+&lt;p&gt;If your files aren’t formatted with a number you can use this workaround.&lt;/p&gt;
 
 &lt;p&gt;Glob the filenames you want to run operations on from whatever directory&lt;/p&gt;
 
@@ -35,10 +35,14 @@
 
 &lt;p&gt;Create a variable in your script that references an array value using $SLURM_ARRAY_TASK_ID as an index&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;basename &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SLURM_ARRAY_TASK_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; .tab&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#include file extension if you want to cut that off&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;basename &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SLURM_ARRAY_TASK_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; .faa&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#include file extension if you want to cut that off&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;p&gt;As an aside you can limit your number of parallel array jobs to whatever number you like using the % operator&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#runs 500-650 but limits to 4 parallel tasks at a time&lt;/span&gt;
+sbatch --array 500-650%4 run_kaiju.subclades.sbatch&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 </description>
-        <pubDate>Sat, 11 Feb 2017 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 03 Apr 2017 00:00:00 -0400</pubDate>
         <link>http://slhogle.github.io/2017/slurm-array-job-trick/</link>
         <guid isPermaLink="true">http://slhogle.github.io/2017/slurm-array-job-trick/</guid>
         
